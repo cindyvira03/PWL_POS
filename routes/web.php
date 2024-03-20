@@ -28,3 +28,8 @@ Route::post('/user/tambah_simpan', [UserController::class, 'tambah_simpan'])->na
 Route::get('/user/ubah/{id}', [UserController::class, 'ubah'])->name('user.ubah');
 Route::put('/user/ubah_simpan/{id}', [UserController::class, 'ubah_simpan'])->name('user.ubah_simpan');
 Route::get('/user/hapus/{id}', [UserController::class, 'hapus'])->name('user.hapus');
+Route::get('/kategori/create', [KategoriController::class, 'create'])->name('kategori.create');
+Route::post('/kategori', [KategoriController::class, 'store']);
+Route::get('/kategori/ubah/{id}', [KategoriController::class, 'ubah']);
+Route::put('/kategori/{id}', [KategoriController::class, 'edit']);
+Route::get('kategori/delete/{id}', [KategoriController::class, 'delete']);
