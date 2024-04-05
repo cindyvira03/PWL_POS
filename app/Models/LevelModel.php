@@ -17,4 +17,9 @@ class LevelModel extends Model
     {
         return $this->hasMany(User::class);
     }
+
+    public function level()
+    {
+        return $this->belongsTo(LevelModel::class);
+    }
 }
