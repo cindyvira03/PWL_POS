@@ -4,6 +4,7 @@ use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\LevelController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\POSController;
+use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,12 +21,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/user', [UserController::class, 'index']);
-Route::get('/user/create', [UserController::class, 'create'])->name('user.create');
-Route::post('/user', [UserController::class, 'store']);
-Route::get('/user/edit/{id}', [UserController::class, 'edit']);
-Route::put('/user/{id}', [UserController::class, 'update']);
-Route::get('/user/delete/{id}', [UserController::class, 'delete']);
+Route::get('/user', [UserController::class, 'index']);              // menampilkan halaman awal user
+Route::post('/user/list', [UserController::class, 'list']);          // menampikan data user dalam bentuk json untuk datatables
+Route::get('/user/create', [UserController::class, 'create']);       // menampilkan halaman form tambah user
+Route::post('/user', [UserController::class, 'store']);             // menyimpan data user baru
+Route::get('/user/{id}', [UserController::class, 'show']);           // menampilkan detail user
+Route::get('/user/{id}/edit', [UserController::class, 'edit']);      // menampilkan halaman form edit user
+Route::put('/user/{id}', [UserController::class, 'update']);         // menyimpan perubahan data user
+Route::delete('/user/{id}', [UserController::class, 'destroy']);     // menghapus data user
 
 Route::get('/level', [LevelController::class, 'index']);
 Route::get('/level/create', [LevelController::class, 'create'])->name('level.create');
@@ -43,3 +46,5 @@ Route::put('/kategori/{id}', [KategoriController::class, 'edit']);
 Route::get('kategori/delete/{id}', [KategoriController::class, 'delete']);
 
 Route::resource('m_user', POSController::class);
+
+Route::get('/', [WelcomeController::class, 'index']);
