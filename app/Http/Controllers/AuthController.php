@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
-    public function index ()
+    public function index()
     {
         // kita ambil data user lalu simpan pada variable $user
         $user = Auth::user();
@@ -23,7 +23,7 @@ class AuthController extends Controller
             }
             // jika user nya memiliki level manager
             else if ($user->level == '2') {
-            return redirect()->intended('manager');
+                return redirect()->intended('manager');
             }
         }
         return view('login');
@@ -44,7 +44,7 @@ class AuthController extends Controller
         if (Auth::attempt($credential)) {
 
             // kalau berhasil simpan data user ya di variabel $user
-            $user = Auth::user ();
+            $user = Auth::user();
 
             // cek lagi jika level user admin maka arahkan ke halaman admin
             if ($user->level_id == '1') {
@@ -65,7 +65,8 @@ class AuthController extends Controller
             ->withErrors(['login_gagal' => 'Pastikan kembali username dan password yang dimasukan sudah benar']);
     }
 
-    public function register(){
+    public function register()
+    {
         // tampilan halaman form register
         return view('register');
     }
@@ -76,7 +77,7 @@ class AuthController extends Controller
         // kita buat validasi nih buat proses register
         // validasinya yaitu semua field wajib di isi
         // validasi username itu harus unique atau tidak boleh duplicate username ya
-        $validator = Validator :: make($request->all(), [
+        $validator = Validator::make($request->all(), [
             'nama' => 'required',
             'username' => 'required |unique:m_user',
             'password' => 'required'
